@@ -1,5 +1,4 @@
-{% set version = "0.4.2" %}
-
+{% set version = '0.4.2' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,12 +9,13 @@ package:
 source:
   fn: gistr_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/gistr_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/gistr/gistr_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/gistr_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/gistr/gistr_{{ version }}.tar.gz
   sha256: 43c00c7f565732125f45f6c067724771ba1b337d6dd3a6e301639fe16e11032e
 
 build:
-  number: 0
+  merge_build_host: True  # [win]
+  number: 1
   skip: true  # [win32]
   rpaths:
     - lib/R/lib/
@@ -23,6 +23,8 @@ build:
 
 requirements:
   build:
+    - {{posix}}zip               # [win]
+  host:
     - r-base
     - r-assertthat
     - r-dplyr
@@ -43,24 +45,26 @@ requirements:
 
 test:
   commands:
-    - $R -e "library('gistr')"  # [not win]
+    - $R -e "library('gistr')"           # [not win]
     - "\"%R%\" -e \"library('gistr')\""  # [win]
 
 about:
   home: https://github.com/ropensci/gistr
   license: MIT
-  summary: |
-    Work with ''GitHub'' ''gists'' from ''R'' (e.g.,  <http://en.wikipedia.org/wiki/GitHub#Gist>,  <https://help.github.com/articles/about-gists/>).
+  summary: 'Work with ''GitHub'' ''gists'' from ''R'' (e.g.,  <http://en.wikipedia.org/wiki/GitHub#Gist>,  <https://help.github.com/articles/about-gists/>).
     A ''gist'' is simply one or more files with code/text/images/etc. This package allows
     the user to create new ''gists'', update ''gists'' with new files, rename files,
     delete files, get and delete ''gists'', star and ''un-star'' ''gists'', fork ''gists'',
     open a ''gist'' in your default browser, get embed code for a ''gist'', list ''gist''
     ''commits'', and get rate limit information when ''authenticated''. Some requests
-    require authentication and some do not.
-
+    require authentication and some do not. ''Gists'' website:  <https://gist.github.com/>.'
   license_family: MIT
 
 extra:
   recipe-maintainers:
     - johanneskoester
     - bgruening
+    - daler
+    - jdblischak
+    - cbrueffer
+    - dbast
