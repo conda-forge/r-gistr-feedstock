@@ -1,4 +1,4 @@
-{% set version = '0.4.2' %}
+{% set version = "0.5.0" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -11,12 +11,12 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/gistr_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/gistr/gistr_{{ version }}.tar.gz
-  sha256: 43c00c7f565732125f45f6c067724771ba1b337d6dd3a6e301639fe16e11032e
+  sha256: a9e896703773aac8b49dc4a5b3db2fd0bf31afb9bc0dd3b32b6402ef74b9691e
 
 build:
   noarch: generic
   merge_build_host: True  # [win]
-  number: 1002
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -51,6 +51,7 @@ test:
 about:
   home: https://github.com/ropensci/gistr
   license: MIT
+  license_file: LICENSE
   summary: 'Work with ''GitHub'' ''gists'' from ''R'' (e.g.,  <http://en.wikipedia.org/wiki/GitHub#Gist>,  <https://help.github.com/articles/about-gists/>).
     A ''gist'' is simply one or more files with code/text/images/etc. This package allows
     the user to create new ''gists'', update ''gists'' with new files, rename files,
