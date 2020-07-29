@@ -27,18 +27,20 @@ requirements:
   host:
     - r-base
     - r-assertthat
+    - r-crul
     - r-dplyr
-    - r-httr >=1.2.0
-    - r-jsonlite >=1.4
+    - r-httr
+    - r-jsonlite
     - r-knitr
     - r-magrittr
     - r-rmarkdown
   run:
     - r-base
     - r-assertthat
+    - r-crul
     - r-dplyr
-    - r-httr >=1.2.0
-    - r-jsonlite >=1.4
+    - r-httr
+    - r-jsonlite
     - r-knitr
     - r-magrittr
     - r-rmarkdown
@@ -51,10 +53,12 @@ test:
 about:
   home: https://github.com/ropensci/gistr
   license: MIT
-  license_file: LICENSE
   summary: "Work with 'GitHub' 'gists' from 'R' (e.g.,  <http://en.wikipedia.org/wiki/GitHub#Gist>,  <https://help.github.com/articles/about-gists/>). A 'gist' is simply one or more files with code/text/images/etc. This package allows the user to create new 'gists', update 'gists' with new files, rename files, delete files,\
     \ get and delete 'gists', star and 'un-star' 'gists', fork 'gists', open a 'gist' in your default browser, get embed code for a 'gist', list 'gist' 'commits', and get rate limit information when 'authenticated'. Some requests require authentication and some do not. 'Gists' website:  <https://gist.github.com/>."
   license_family: MIT
+  license_file:
+    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/MIT'
+    - LICENSE
 
 extra:
   recipe-maintainers:
